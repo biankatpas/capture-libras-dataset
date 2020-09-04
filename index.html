@@ -27,13 +27,17 @@
 </div>
 <script>
 	var video = document.querySelector("#videoElement");
-
-	if (navigator.mediaDevices.getUserMedia) {
-	  navigator.mediaDevices.getUserMedia({ video: true })
-	    .then(function (stream) {
+	if(navigator.mediaDevices.getUserMedia) 
+	{
+	  navigator.mediaDevices.getUserMedia({video:true})
+	    .then(function(stream){
+	      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) 
+	      {
+		  	console.log('Mobile Device');
+		  }	
 	      video.srcObject = stream;
 	    })
-	    .catch(function (err0r) {
+	    .catch(function(err0r){
 	      console.log("Something went wrong!");
 	    });
 	}
